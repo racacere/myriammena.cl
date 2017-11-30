@@ -50,7 +50,7 @@
 
         // Set the recipient email address.
         // FIXME: Update this to your desired email address.
-        $recipient = "walker.without.way@gmail.com";
+        $recipient = "myriam.mena@usm.cl";
 
         // Build the email content.
         $email_content = "<strong>Nombre:</strong> $name<br />";
@@ -59,9 +59,8 @@
 
         // Build the email headers.
         $headers = "From: contacto@myriammena.cl\r\n";
-        $headers .= "Reply-To: contacto@myriammena.cl\r\n";
-        $headers .= "Return-Path: contacto@myriammena.cl\r\n";
-        $headers .= "CC: walker.without.way@gmail.com\r\n";
+        $headers .= "Return-Path: myriam.mena@usm.cl\r\n";
+        $headers .= "CC: fjimenez@inf.utfsm.cl\r\n";
         $headers .= "BCC: racacere@alumnos.inf.utfsm.cl\r\n";
         $headers .= 'MIME-Version: 1.0' . "\r\n";
         $headers .= "Content-type: text/html; charset=utf-8\r\n";

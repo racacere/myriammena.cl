@@ -3220,3 +3220,11 @@
      -moz-border-radius: 4px;
           border-radius: 4px;
 }
+
+.text-xs-center {
+		text-align: center;
+}
+
+.g-recaptcha {
+		display: inline-block;
+}

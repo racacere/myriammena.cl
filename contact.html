@@ -13,6 +13,7 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<script src='https://www.google.com/recaptcha/api.js'></script>
 	</head>
 	<body class="contact">
 		<div id="page-wrapper">
@@ -65,6 +66,11 @@
 											</div>
 										</div>
 										<div class="row 50%">
+											<div class="12u text-xs-center">
+												<div class="g-recaptcha" data-sitekey="6LfpBjsUAAAAAEgOutlOHwjOds9vSwBdUTyrEmXp"></div>
+											</div>
+										</div>
+										<div class="row 50%">
 											<div class="12u">
 												<div id="form-messages"></div>
 											</div>
@@ -72,7 +78,7 @@
 										<div class="row">
 											<div class="12u">
 												<ul class="buttons">
-													<li><input type="submit" class="special" value="Enviar Mensaje" /></li>
+													<li><input type="submit" class="special" value="Enviar Mensaje" onclick="return validateCaptcha()" /></li>
 												</ul>
 											</div>
 										</div>

@@ -50,3 +50,14 @@ $(function() {
 	});
 
 });
+
+
+function validateCaptcha()
+{
+        if(grecaptcha.getResponse() == null)
+        {
+                alert("Debes completar el reCATPCHA.");
+                return false;
+        }
+        return true;
+}

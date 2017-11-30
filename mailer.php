@@ -7,10 +7,38 @@
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Get the form fields and remove whitespace.
         $name = strip_tags(trim($_POST["name"]));
-				$name = str_replace(array("\r","\n"),array(" "," "),$name);
+		$name = str_replace(array("\r","\n"),array(" "," "),$name);
         $email = filter_var(trim($_POST["email"]), FILTER_SANITIZE_EMAIL);
         $message = trim($_POST["message"]);
         $subject = trim($_POST["subject"]);
+
+        // reCATPCHA Validation.
+        $post_data = http_build_query(
+            array(
+                'secret' => CAPTCHA_SECRET,
+                'response' => $_POST['g-recaptcha-response'],
+                'remoteip' => $_SERVER['REMOTE_ADDR']
+            )
+        );
+        $opts = array('http' =>
+            array(
+                'method'  => 'POST',
+                'header'  => 'Content-type: application/x-www-form-urlencoded',
+                'content' => $post_data
+            )
+        );
+        $context  = stream_context_create($opts);
+        $response = file_get_contents('https://www.google.com/recaptcha/api/siteverify', false, $context);
+        $result = json_decode($response);
+
+        // Check if you are a robot.
+        if(!($result['success'])){
+            // Set a 400 (bad request) response code and exit.
+            http_response_code(400);
+            echo "Oops! reCATPCHA dice que eres un robot. Por favor intenta nuevamente.";
+            exit;
+        }
+
 
         // Check that data was sent to the mailer.
         if ( empty($name) OR empty($message) OR empty($subject) OR !filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -43,10 +71,10 @@
             echo "Oops! Algo salio mal y no podemos enviar tu mensaje.";
         }
 
-    } else {
-        // Not a POST request, set a 403 (forbidden) response code.
-        http_response_code(403);
-        echo "Hay un error con el envio, por favor intenta nuevamente.";
-    }
+        } else {
+            // Not a POST request, set a 403 (forbidden) response code.
+            http_response_code(403);
+            echo "Hay un error con el envio, por favor intenta nuevamente.";
+        }
 
 ?>

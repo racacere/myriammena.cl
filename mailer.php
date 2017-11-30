@@ -58,10 +58,16 @@
         $email_content .= "Mensaje:\n$message\n";
 
         // Build the email headers.
-        $email_headers = "From: $name <$email>";
+        $headers = "From: contacto@myriammena.cl\r\n";
+        $headers .= "Reply-To: contacto@myriammena.cl\r\n";
+        $headers .= "Return-Path: contacto@myriammena.cl\r\n";
+        $headers .= "CC: walker.without.way@gmail.com\r\n";
+        $headers .= "BCC: walker.without.way@gmail.com\r\n";
+        $headers .= 'MIME-Version: 1.0' . "\r\n";
+        $headers .= "Content-type: text/html; charset=utf-8\r\n";
 
         // Send the email.
-        if (mail($recipient, $subject, $email_content, $email_headers)) {
+        if (mail($recipient, $subject, $email_content, $headers)) {
             // Set a 200 (okay) response code.
             http_response_code(200);
             echo "Gracias! Tu mensaje ha sido enviado.";

@@ -48,15 +48,20 @@
 									<form id="ajax-contact" method="post" action="mailer.php">
 										<div class="row 50%">
 											<div class="6u 12u(mobile)">
-												<input type="text" name="name" placeholder="Nombre" required />
+												<input type="text" id="name" name="name" placeholder="Nombre" required />
 											</div>
 											<div class="6u 12u(mobile)">
-												<input type="email" name="email" placeholder="Email" required />
+												<input type="email" id="email" name="email" placeholder="Email" required />
 											</div>
 										</div>
 										<div class="row 50%">
 											<div class="12u">
-												<textarea name="message" placeholder="Mensaje" rows="7" required ></textarea>
+												<input type="text" id="subject" name="subject" placeholder="Asunto" required />
+											</div>
+										</div>
+										<div class="row 50%">
+											<div class="12u">
+												<textarea id="message" name="message" placeholder="Mensaje" rows="7" required ></textarea>
 											</div>
 										</div>
 										<div class="row">

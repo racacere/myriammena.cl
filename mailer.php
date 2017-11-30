@@ -10,9 +10,10 @@
 				$name = str_replace(array("\r","\n"),array(" "," "),$name);
         $email = filter_var(trim($_POST["email"]), FILTER_SANITIZE_EMAIL);
         $message = trim($_POST["message"]);
+        $subject = trim($_POST["subject"]);
 
         // Check that data was sent to the mailer.
-        if ( empty($name) OR empty($message) OR !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        if ( empty($name) OR empty($message) OR empty($subject) OR !filter_var($email, FILTER_VALIDATE_EMAIL)) {
             // Set a 400 (bad request) response code and exit.
             http_response_code(400);
             echo "Oops! Hubo un error en el envío. Por favor, completa el formulario y prueba de nuevo.";
@@ -23,16 +24,13 @@
         // FIXME: Update this to your desired email address.
         $recipient = "walker.without.way@gmail.com";
 
-        // Set the email subject.
-        $subject = "Nuevo mensaje de $name, via myriammena.cl";
-
         // Build the email content.
         $email_content = "Nombre: $name\n";
-        $email_content .= "email: $email\n\n";
+        $email_content .= "Email: $email\n\n";
         $email_content .= "Mensaje:\n$message\n";
 
         // Build the email headers.
-        $email_headers = "De: $name <$email>";
+        $email_headers = "From: $name <$email>";
 
         // Send the email.
         if (mail($recipient, $subject, $email_content, $email_headers)) {

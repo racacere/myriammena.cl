@@ -32,7 +32,7 @@
         $result = json_decode($response);
 
         // Check if you are a robot.
-        if(!($result['success'])){
+        if(!($result->success)){
             // Set a 400 (bad request) response code and exit.
             http_response_code(400);
             echo "Oops! reCATPCHA dice que eres un robot. Por favor intenta nuevamente.";
@@ -71,10 +71,10 @@
             echo "Oops! Algo salio mal y no podemos enviar tu mensaje.";
         }
 
-        } else {
-            // Not a POST request, set a 403 (forbidden) response code.
-            http_response_code(403);
-            echo "Hay un error con el envio, por favor intenta nuevamente.";
-        }
+    } else {
+        // Not a POST request, set a 403 (forbidden) response code.
+        http_response_code(403);
+        echo "Hay un error con el envio, por favor intenta nuevamente.";
+    }
 
 ?>

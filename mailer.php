@@ -53,16 +53,16 @@
         $recipient = "walker.without.way@gmail.com";
 
         // Build the email content.
-        $email_content = "Nombre: $name\n";
-        $email_content .= "Email: $email\n\n";
-        $email_content .= "Mensaje:\n$message\n";
+        $email_content = "<strong>Nombre:</strong> $name<br />";
+        $email_content .= "<strong>Email</strong>: $email<br /><br />";
+        $email_content .= "<strong>Mensaje</strong>:<br />$message<br />";
 
         // Build the email headers.
         $headers = "From: contacto@myriammena.cl\r\n";
         $headers .= "Reply-To: contacto@myriammena.cl\r\n";
         $headers .= "Return-Path: contacto@myriammena.cl\r\n";
         $headers .= "CC: walker.without.way@gmail.com\r\n";
-        $headers .= "BCC: walker.without.way@gmail.com\r\n";
+        $headers .= "BCC: racacere@alumnos.inf.utfsm.cl\r\n";
         $headers .= 'MIME-Version: 1.0' . "\r\n";
         $headers .= "Content-type: text/html; charset=utf-8\r\n";
 
